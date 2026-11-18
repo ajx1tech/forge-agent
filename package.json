@@ -1,0 +1,180 @@
+{
+  "name": "forge-agent",
+  "displayName": "Forge Agent",
+  "version": "0.0.1",
+  "description": "VS Code extension for TrueFoundry Forge-a-thon",
+  "main": "./dist/extension.js",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:forge.chatView",
+    "onView:forge.reviewView",
+    "onCommand:forge.inlineEdit",
+    "onCommand:forge.review"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "forge-activitybar",
+          "title": "Forge",
+          "icon": "$(sparkle)"
+        }
+      ]
+    },
+    "views": {
+      "forge-activitybar": [
+        {
+          "type": "webview",
+          "id": "forge.chatView",
+          "name": "Forge Agent"
+        }
+      ],
+      "explorer": [
+        {
+          "id": "forge.reviewView",
+          "name": "Forge Review"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "forge.hello",
+        "title": "Forge: Hello"
+      },
+      {
+        "command": "forge.doctor",
+        "title": "Forge: Doctor"
+      },
+      {
+        "command": "forge.ping",
+        "title": "Forge: Ping"
+      },
+      {
+        "command": "forge.inlineEdit",
+        "title": "Forge: Inline Edit"
+      },
+      {
+        "command": "forge.review",
+        "title": "Forge: Review Staged Changes"
+      },
+      {
+        "command": "forge.reviewDemoFixture",
+        "title": "Forge: Review (demo fixture)"
+      },
+      {
+        "command": "forge.undoLastAppliedChange",
+        "title": "Forge: Undo last applied change"
+      },
+      {
+        "command": "forge.acceptHunk",
+        "title": "Forge: Accept Hunk"
+      },
+      {
+        "command": "forge.rejectHunk",
+        "title": "Forge: Reject Hunk"
+      },
+      {
+        "command": "forge.nextHunk",
+        "title": "Forge: Next Hunk"
+      },
+      {
+        "command": "forge.acceptCurrentHunk",
+        "title": "Forge: Accept Current Hunk"
+      },
+      {
+        "command": "forge.rejectCurrentHunk",
+        "title": "Forge: Reject Current Hunk"
+      },
+      {
+        "command": "forge.acceptAll",
+        "title": "Forge: Accept All Hunks"
+      },
+      {
+        "command": "forge.rejectAll",
+        "title": "Forge: Reject All Hunks"
+      },
+      {
+        "command": "forge.applyChanges",
+        "title": "Forge: Apply Accepted Changes"
+      },
+      {
+        "command": "forge.simulatePrimaryFailure",
+        "title": "Forge: Simulate primary failure"
+      },
+      {
+        "command": "forge.restoreModels",
+        "title": "Forge: Restore models"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "forge.inlineEdit",
+        "key": "ctrl+alt+k",
+        "mac": "cmd+alt+k",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "forge.acceptCurrentHunk",
+        "key": "alt+y",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "forge.rejectCurrentHunk",
+        "key": "alt+n",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "forge.nextHunk",
+        "key": "alt+]",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "forge.inlineEdit",
+          "when": "editorTextFocus",
+          "group": "forge@1"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "forge.applyChanges",
+          "when": "view == forge.reviewView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "forge.undoLastAppliedChange",
+          "when": "view == forge.reviewView",
+          "group": "navigation@2"
+        },
+        {
+          "command": "forge.reviewDemoFixture",
+          "when": "view == forge.reviewView",
+          "group": "navigation@3"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "lint": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.0",
+    "@types/vscode": "^1.90.0",
+    "esbuild": "^0.21.4",
+    "tsx": "^4.23.15",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "@truefoundry/trueforge-sdk": "^0.185.0"
+  }
+}

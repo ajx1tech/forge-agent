@@ -1,0 +1,9 @@
+{
+  "baseUrl": "http://localhost:8790",
+  "models": [
+    "google-gemini/<primary-model-id>",
+    "custom/<groq-model-id>"
+  ],
+  "mcpPort": 8799,
+  "contextBudgetTokens": 8000
+}

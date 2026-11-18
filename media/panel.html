@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src {{cspSource}} 'unsafe-inline'; script-src 'nonce-{{nonce}}'; font-src {{cspSource}}; img-src {{cspSource}} https: data:;">
+  <link rel="stylesheet" href="{{styleUri}}">
+  <title>Forge Agent</title>
+</head>
+<body>
+  <!-- Top Header with Model Badge & Controls -->
+  <header class="forge-header">
+    <div class="model-badge" id="model-badge">
+      <span class="model-dot"></span>
+      <span id="model-name">Gemini 1.5 Pro</span>
+    </div>
+    <div class="header-actions">
+      <button id="stop-btn" class="btn-secondary" title="Stop generating (cancel turn)" disabled>
+        <span>⏹ Stop</span>
+      </button>
+      <button id="new-chat-btn" class="btn-secondary" title="Start a new chat session">
+        <span>+ New Chat</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Context Budget Bar -->
+  <div class="budget-container" id="budget-container">
+    <div class="budget-labels">
+      <span>Context Budget</span>
+      <span id="budget-text">0 / 8,000 tokens (0%)</span>
+    </div>
+    <div class="budget-bar-bg">
+      <div class="budget-bar-fill" id="budget-bar-fill" style="width: 0%;"></div>
+    </div>
+  </div>
+
+  <!-- Chat Transcript Area -->
+  <main class="transcript" id="transcript">
+    <!-- Messages rendered dynamically -->
+  </main>
+
+  <!-- Approval Banner (shown when tool execution approval is requested) -->
+  <div class="approval-banner" id="approval-banner" style="display: none;">
+    <div class="approval-title">
+      <span>⚠️ Tool Approval Required:</span>
+      <span id="approval-desc">apply_changes</span>
+    </div>
+    <div class="approval-actions">
+      <button id="btn-review-changes" class="btn-primary" title="Inspect changes in diff view">
+        Review changes
+      </button>
+      <button id="btn-allow" class="btn-success" title="Allow this tool execution">
+        Allow
+      </button>
+      <button id="btn-deny" class="btn-danger" title="Deny this tool execution">
+        Deny
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat Input Area with @ Autocomplete -->
+  <div class="input-area">
+    <div class="autocomplete-popup" id="autocomplete-popup" style="display: none;"></div>
+    <div class="input-wrapper">
+      <textarea id="chat-input" placeholder="Ask Forge or type @ to mention files/symbols..." rows="1"></textarea>
+      <button id="send-btn" class="btn-primary" title="Send message">
+        <span>Send</span>
+      </button>
+    </div>
+  </div>
+
+  <script nonce="{{nonce}}" src="{{scriptUri}}"></script>
+</body>
+</html>

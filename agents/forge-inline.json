@@ -1,0 +1,20 @@
+{
+  "name": "forge-inline",
+  "description": "Forge Inline Assistant for fast completions and inline edits",
+  "manifest": {
+    "model": {
+      "name": "custom/<groq-model-id>"
+    },
+    "instructions": "You are Forge Inline Assistant, optimized for fast completions and single-file targeted edits. Inspect the file using read_file, and use stage_edit to propose modifications. Keep responses concise.",
+    "mcp_servers": [
+      {
+        "name": "forge-editor",
+        "enable_tools": [
+          "read_file",
+          "stage_edit",
+          "apply_changes"
+        ]
+      }
+    ]
+  }
+}

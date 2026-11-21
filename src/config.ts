@@ -16,8 +16,7 @@ export interface ForgeConfig {
 export const DEFAULT_CONFIG: ForgeConfig = {
   baseUrl: 'http://localhost:8790',
   models: [
-    'google-gemini/gemini-3-1-flash-lite',
-    'groq/llama-3.3-70b-versatile'
+    'groq/llama-3.3-70b-versatile', 'google-gemini/gemini-3-5-flash'
   ],
   mcpPort: 8799,
   mcpHost: '127.0.0.1',
@@ -93,3 +92,4 @@ export function getConfig(overrides?: Partial<ForgeConfig>): ForgeConfig {
     turnCapBudgetTokens
   };
 }
+

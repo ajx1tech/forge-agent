@@ -1,11 +1,11 @@
-// @ts-check
+﻿// @ts-check
 (function () {
   // @ts-ignore
   const vscode = acquireVsCodeApi();
 
   // State
   let state = {
-    model: 'Gemini 1.5 Pro',
+    model: 'gemini-3-1-flash-lite',
     status: 'idle',
     budget: { usedTokens: 0, maxTokens: 8000 },
     messages: [],
@@ -115,7 +115,7 @@
       const parts = displayName.split('/');
       displayName = parts[parts.length - 1];
     }
-    if (displayName.includes('gemini')) displayName = 'Gemini 1.5 Pro';
+    if (displayName.includes('gemini')) displayName = 'gemini-3-1-flash-lite';
     if (displayName.includes('groq')) displayName = 'Groq Fast';
     if (modelNameEl) modelNameEl.textContent = displayName;
 
@@ -243,7 +243,7 @@
       const div = document.createElement('div');
       div.className = `autocomplete-item ${idx === 0 ? 'selected' : ''}`;
       div.innerHTML = `
-        <span>${item.kind === 'file' ? '📄' : '🔷'}</span>
+        <span>${item.kind === 'file' ? 'ðŸ“„' : 'ðŸ”·'}</span>
         <strong>${item.name || item.path}</strong>
         <span class="autocomplete-item-path">${item.path || ''}</span>
       `;
@@ -531,3 +531,4 @@
   updateBudget();
   updateApproval();
 })();
+

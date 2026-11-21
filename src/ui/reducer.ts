@@ -204,3 +204,4 @@ export function panelReducer(state: PanelState = initialPanelState, action: Pane
       return state;
   }
 }
+

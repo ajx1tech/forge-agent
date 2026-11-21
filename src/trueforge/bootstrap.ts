@@ -71,7 +71,7 @@ export function loadLocalAgentDefinitions(workspaceRoot?: string): AgentDefiniti
       name: 'forge-agent',
       description: 'Forge Agent for VS Code extension',
       manifest: {
-        model: { name: 'google-gemini/gemini-3-1-flash-lite' },
+        model: { name: 'groq/llama-3.3-70b-versatile' },
         instructions: 'You are Forge Agent, an expert AI software engineer operating inside VS Code. You inspect files, run tests, and propose clean, minimal diffs. All edits must go through the staging changeset.',
         mcp_servers: [
           {
@@ -94,7 +94,7 @@ export function loadLocalAgentDefinitions(workspaceRoot?: string): AgentDefiniti
       name: 'forge-inline',
       description: 'Forge Inline Assistant for fast completions and inline edits',
       manifest: {
-        model: { name: 'google-gemini/gemini-3-1-flash-lite' },
+        model: { name: 'groq/llama-3.3-70b-versatile' },
         instructions: 'You are Forge Inline Assistant, optimized for fast completions and single-file targeted edits. Keep responses concise.',
         mcp_servers: [
           {
@@ -251,3 +251,4 @@ export async function bootstrapTrueForge(
     serverManager
   };
 }
+

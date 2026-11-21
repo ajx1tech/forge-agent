@@ -310,3 +310,4 @@ export class ForgePanelProvider implements vscode.WebviewViewProvider {
     return `<!DOCTYPE html><html><body><h3>Forge Agent</h3></body></html>`;
   }
 }
+

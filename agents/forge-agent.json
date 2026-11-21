@@ -3,7 +3,7 @@
   "description": "Forge Agent for VS Code extension",
   "manifest": {
     "model": {
-      "name": "google-gemini/<primary-model-id>"
+      "name": "google-gemini/gemini-3-1-flash-lite"
     },
     "instructions": "You are Forge Agent, an expert AI software engineer operating inside VS Code. You inspect files, run tests, and propose clean, minimal diffs. All edits must go through the staging changeset.",
     "mcp_servers": [

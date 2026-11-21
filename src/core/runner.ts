@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+﻿import * as vscode from 'vscode';
 import { TrueForgeClient, NormalizedTurnEvent, ToolApprovalInput, CreateSessionOptions } from '../trueforge/client.js';
 import { ChangeSet } from '../review/changeset.js';
 import { McpServer } from '../mcp/server.js';
@@ -77,15 +77,22 @@ export class RunController {
     const activeModel = this.fallbackManager.getActiveModel();
     const agentName = options?.agentName || 'forge-agent';
 
+        try {
+      const rawClient = this.trueForgeClient.getRawClient();
+      const listResp: any = await rawClient.agents.list();
+      const agentsList = Array.isArray(listResp?.data) ? listResp.data : [];
+      const target = agentsList.find((a: any) => a.name === agentName);
+      if (target?.id && target?.manifest?.model?.name !== activeModel) {
+        await rawClient.agents.update(target.id, {
+          description: target.description || 'Forge Agent for VS Code extension',
+          manifest: { ...target.manifest, model: { name: activeModel } }
+        });
+      }
+    } catch {}
+
     const sessionOpts: CreateSessionOptions = {
       ...options,
-      agentName,
-      agentSpec: options?.agentSpec || {
-        name: agentName,
-        manifest: {
-          model: { name: activeModel }
-        }
-      }
+      agentName
     };
 
     const res = await this.trueForgeClient.createSession(sessionOpts);
@@ -275,3 +282,5 @@ export class RunController {
     this.outputChannel?.appendLine('[RunController] Cancellation complete. Workspace state is clean and idle.');
   }
 }
+
+

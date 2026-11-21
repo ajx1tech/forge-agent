@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+﻿import * as vscode from 'vscode';
 import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -71,7 +71,7 @@ export function loadLocalAgentDefinitions(workspaceRoot?: string): AgentDefiniti
       name: 'forge-agent',
       description: 'Forge Agent for VS Code extension',
       manifest: {
-        model: { name: 'google-gemini/<primary-model-id>' },
+        model: { name: 'google-gemini/gemini-3-1-flash-lite' },
         instructions: 'You are Forge Agent, an expert AI software engineer operating inside VS Code. You inspect files, run tests, and propose clean, minimal diffs. All edits must go through the staging changeset.',
         mcp_servers: [
           {
@@ -94,7 +94,7 @@ export function loadLocalAgentDefinitions(workspaceRoot?: string): AgentDefiniti
       name: 'forge-inline',
       description: 'Forge Inline Assistant for fast completions and inline edits',
       manifest: {
-        model: { name: 'custom/<groq-model-id>' },
+        model: { name: 'google-gemini/gemini-3-1-flash-lite' },
         instructions: 'You are Forge Inline Assistant, optimized for fast completions and single-file targeted edits. Keep responses concise.',
         mcp_servers: [
           {
@@ -237,7 +237,7 @@ export async function bootstrapTrueForge(
     }
 
     try {
-      const agentDefs = loadLocalAgentDefinitions(options?.workspaceRoot);
+      const agentDefs = loadLocalAgentDefinitions(context.extensionUri.fsPath);
       const upserted = await upsertAgents(client, agentDefs);
       outputChannel.appendLine(`[Forge] Upserted ${upserted.length} agents: ${upserted.map(a => `${a.name} (${a.action})`).join(', ')}`);
     } catch (err: any) {

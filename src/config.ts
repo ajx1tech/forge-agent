@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+﻿import * as vscode from 'vscode';
 
 export interface ForgeConfig {
   baseUrl: string;
@@ -16,8 +16,8 @@ export interface ForgeConfig {
 export const DEFAULT_CONFIG: ForgeConfig = {
   baseUrl: 'http://localhost:8790',
   models: [
-    'google-gemini/<primary-model-id>',
-    'custom/<groq-model-id>'
+    'google-gemini/gemini-3-1-flash-lite',
+    'groq/llama-3.3-70b-versatile'
   ],
   mcpPort: 8799,
   mcpHost: '127.0.0.1',

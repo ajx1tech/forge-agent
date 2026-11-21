@@ -1,4 +1,4 @@
-export interface ContextItem {
+﻿export interface ContextItem {
   file: string;
   lines: [number, number];
   score: number;

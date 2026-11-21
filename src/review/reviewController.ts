@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+﻿import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import { ChangeSet, StagedFileChange } from './changeset.js';
@@ -285,6 +285,7 @@ export class ReviewController implements vscode.TreeDataProvider<ReviewItem> {
 
     try {
       const applied = await vscode.workspace.applyEdit(edit);
+      await vscode.workspace.saveAll(false);
       if (!applied) {
         return { applied: false, appliedFiles: [], error: 'WorkspaceEdit was not applied by editor.' };
       }
@@ -466,3 +467,4 @@ export class ReviewController implements vscode.TreeDataProvider<ReviewItem> {
     );
   }
 }
+

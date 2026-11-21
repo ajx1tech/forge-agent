@@ -3,7 +3,7 @@
   "description": "Forge Inline Assistant for fast completions and inline edits",
   "manifest": {
     "model": {
-      "name": "custom/<groq-model-id>"
+      "name": "google-gemini/gemini-3-1-flash-lite"
     },
     "instructions": "You are Forge Inline Assistant, optimized for fast completions and single-file targeted edits. Inspect the file using read_file, and use stage_edit to propose modifications. Keep responses concise.",
     "mcp_servers": [

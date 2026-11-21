@@ -1,4 +1,5 @@
-import * as vscode from 'vscode';
+﻿import * as vscode from 'vscode';
+import * as forgeBootstrap from './trueforge/bootstrap';
 import { bootstrapTrueForge } from './trueforge/bootstrap.js';
 import { McpServer } from './mcp/server.js';
 import { WorkspaceIndexer } from './context/indexer.js';
@@ -96,6 +97,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
       indexer,
       editTools
     });
+    await mcpServer.start();
 
     // TrueForge client for agent loops
     const trueForgeClient = new TrueForgeClient(
@@ -172,3 +174,4 @@ export async function deactivate(): Promise<void> {
     outputChannel.dispose();
   }
 }
+
